@@ -1,0 +1,11 @@
+{
+  "name": "scorecard",
+  "displayName": "Scorecard",
+  "version": "0.1.0",
+  "description": "Onboard an AI agent to Scorecard. Detects how the agent is built, adds tracing, writes metrics and test sets, and runs a first evaluation.",
+  "author": { "name": "Scorecard", "url": "https://scorecard.io" },
+  "homepage": "https://docs.scorecard.io",
+  "repository": "https://github.com/scorecard-ai/scorecard-skills",
+  "license": "Apache-2.0",
+  "keywords": ["scorecard", "evals", "tracing", "opentelemetry", "llm", "agents", "observability"]
+}
