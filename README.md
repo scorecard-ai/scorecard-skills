@@ -64,7 +64,7 @@ Every change lands as ordinary code or config in your repo, so you can review it
 
 ## Links
 
-[Docs](https://docs.scorecard.io) · [App](https://app.scorecard.io) · SDKs: [Python](https://github.com/scorecard-ai/scorecard-python), [TypeScript](https://github.com/scorecard-ai/scorecard-node), [Go](https://github.com/scorecard-ai/scorecard-go) · Feedback: open an issue
+[Docs](https://docs.scorecard.io) · [App](https://app.scorecard.io) · SDKs: [Python](https://github.com/scorecard-ai/scorecard-python), [TypeScript](https://github.com/scorecard-ai/scorecard-node), [Go](https://github.com/scorecard-ai/scorecard-go)
 
 ## License
 
