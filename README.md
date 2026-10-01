@@ -1,76 +1,70 @@
-# Scorecard skills
+# Scorecard Skills
 
-Official [Scorecard](https://scorecard.io) skills for Claude Code and other coding agents.
-
-Point your coding agent at the repo of an AI agent or LLM app, and these skills connect it to Scorecard: they add tracing, write metrics and test sets, and run your first evaluation. Every change is ordinary code in your repo, so you can review it, re-run it, and put it in CI.
+Agent Skills that connect an AI agent to [Scorecard](https://scorecard.io): tracing, metrics, test sets, and evals. They work in any coding agent that reads `SKILL.md` files: Claude Code, Codex, Gemini CLI, OpenCode, Pi, Cursor, Goose, Hermes, and more.
 
 ## Install
 
-In Claude Code:
+**Any agent**
+
+```bash
+npx skills add scorecard-ai/scorecard-skills
+```
+
+The installer asks which agents to install for. To pick one up front, add `-a <agent>`, for example `-a codex`, `-a opencode`, or `-a pi`.
+
+**Claude Code plugin** (also adds the Scorecard MCP server)
 
 ```
 /plugin marketplace add scorecard-ai/scorecard-skills
 /plugin install scorecard@scorecard
 ```
 
-Or from a terminal:
+**By hand:** copy the folders in [`skills/`](skills) to your agent's skills folder. Most agents read `.agents/skills/`; Claude Code reads `.claude/skills/`.
 
-```bash
-claude plugin marketplace add scorecard-ai/scorecard-skills
-claude plugin install scorecard@scorecard
-```
+## Use
 
-The plugin also connects the Scorecard MCP server (`https://mcp.scorecard.io/mcp`). Run `/mcp` in Claude Code and sign in to use it.
+Get an API key at [app.scorecard.io/settings](https://app.scorecard.io/settings), open your agent's repo, and ask:
 
-**Other agents** (Codex, Cursor, Gemini CLI, and others that read `SKILL.md` files): copy the folders in [`plugins/scorecard/skills/`](plugins/scorecard/skills) into your agent's skills directory, for example `.agents/skills/` or `~/.codex/skills/`.
+> Onboard this agent to Scorecard.
 
-## Quick start
-
-1. Get a Scorecard API key at [app.scorecard.io/settings](https://app.scorecard.io/settings). Org admins can create keys.
-2. Open your agent's repo in Claude Code and ask:
-
-   > Onboard this agent to Scorecard.
-
-The `scorecard-onboard` skill walks through each step and asks before it spends money or changes behavior. You can also ask for one step, for example "Add Scorecard tracing" or "Write Scorecard metrics for this agent".
+Or ask for one step: "Add Scorecard tracing", "Trace my coding agent in Scorecard", "Write Scorecard metrics for this agent".
 
 ## Skills
 
-| Skill | What it does | Output in your repo |
-|---|---|---|
-| `scorecard-onboard` | Runs all the steps below in order | |
-| `scorecard-setup` | Checks your API key, picks or creates a project, connects MCP | `SCORECARD_API_KEY`, `SCORECARD_PROJECT_ID` in `.env` |
-| `scorecard-agent-brief` | Reads the agent's code and writes what it does and what "good" means | `scorecard/agent-brief.md` |
-| `scorecard-tracing` | Detects how the agent is built and adds tracing | A few lines at the agent's entry point |
-| `scorecard-metrics` | Designs 3 to 5 metrics (LLM judge, human, or heuristic) and creates them | `scorecard/metrics.py` or `.ts` |
-| `scorecard-testsets` | Builds a test set from scratch or from CSV / JSON / JSONL | `scorecard/testcases.jsonl`, `scorecard/testset.py` or `.ts` |
-| `scorecard-evals` | Runs the agent on the test set, scores it, links traces, sets up CI | `scorecard/run_eval.py` or `.ts`, optional GitHub Actions workflow |
-
-## Supported stacks
-
-| Your agent uses | How the skill traces it |
+| Skill | Does |
 |---|---|
-| Claude Agent SDK (Python, TypeScript), Claude Code CLI | Env vars only, no code change |
-| Claude Tag (Claude in Slack) | Admin settings, no code change |
-| OpenAI or Anthropic SDK (Python, TypeScript) | `wrap()` from the Scorecard SDK |
-| Vercel AI SDK | `wrapAISDK()` from the Scorecard SDK, with optional live scoring |
-| LangChain, LangGraph, LlamaIndex, CrewAI, LiteLLM, OpenAI Agents SDK, Haystack, Bedrock, Gemini | OpenLLMetry (Traceloop), one init call |
-| Any OpenAI-compatible client, no new dependency allowed | Scorecard LLM proxy, change the base URL |
-| Go, Java, .NET, Rust, Ruby, raw HTTP, or an existing OpenTelemetry setup | OpenTelemetry OTLP exporter |
+| [`scorecard-onboard`](skills/scorecard-onboard) | Runs every step below, in order |
+| [`scorecard-setup`](skills/scorecard-setup) | Checks the API key, picks or creates a project, connects MCP |
+| [`scorecard-agent-brief`](skills/scorecard-agent-brief) | Writes down what the agent does and what "good" means |
+| [`scorecard-tracing`](skills/scorecard-tracing) | Adds tracing to an app, a framework, or a coding agent |
+| [`scorecard-metrics`](skills/scorecard-metrics) | Designs and creates metrics |
+| [`scorecard-testsets`](skills/scorecard-testsets) | Builds a test set, or imports CSV, JSON, or JSONL |
+| [`scorecard-evals`](skills/scorecard-evals) | Runs evals, links traces, simulates conversations, sets up CI |
 
-For evaluation, the skills cover SDK runs (`runAndEvaluate` / `run_and_evaluate`), trace-linked eval records, multi-turn simulations with simulated users, pushing your own scores (guardrails, code checks, human review), system versions for A/B comparisons, and CI with GitHub Actions. They also explain the no-code paths in the Scorecard UI: file import, Playground runs, and HTTP endpoints.
+Every change lands as ordinary code or config in your repo, so you can review it and re-run it.
 
-## What the skills will and will not do
+## What it traces
 
-- They keep your API key in env files that git ignores. They never write it into code.
-- They change as little code as they can, in your repo's language and style.
-- They ask before running anything that costs money, like an eval run that calls your model.
-- They do not delete or overwrite existing Scorecard metrics or test sets.
+**Apps and frameworks:** OpenAI and Anthropic SDKs, Vercel AI SDK, LangChain, LangGraph, LlamaIndex, CrewAI, LiteLLM, OpenAI Agents SDK, Claude Agent SDK, any OpenTelemetry setup, and hand-written agent loops in any language.
+
+**Coding agents:**
+
+| Agent | How |
+|---|---|
+| Claude Code, OpenCode, Goose | Env vars |
+| Codex, Gemini CLI | Their config file |
+| Pi | An extension included in the skill |
+| Hermes, Cursor, your own harness | Hooks plus span helpers included in the skill |
+
+## Safety
+
+- The API key stays in git-ignored env files, never in code.
+- The skills ask before running anything that costs money or sends prompts and tool output to Scorecard.
+- They never delete or overwrite existing Scorecard metrics or test sets.
 
 ## Links
 
-- Docs: [docs.scorecard.io](https://docs.scorecard.io)
-- App: [app.scorecard.io](https://app.scorecard.io)
-- SDKs: [Python](https://github.com/scorecard-ai/scorecard-python), [TypeScript](https://github.com/scorecard-ai/scorecard-node), [Go](https://github.com/scorecard-ai/scorecard-go)
+[Docs](https://docs.scorecard.io) · [App](https://app.scorecard.io) · SDKs: [Python](https://github.com/scorecard-ai/scorecard-python), [TypeScript](https://github.com/scorecard-ai/scorecard-node), [Go](https://github.com/scorecard-ai/scorecard-go)
 
 ## License
 

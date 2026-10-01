@@ -1,11 +1,11 @@
 ---
 name: scorecard-testsets
-description: Build a Scorecard test set for an AI agent. Designs the test case schema from the agent's real inputs, writes 10 to 30 test cases (happy paths, edge cases, risky cases), or imports them from CSV, JSON, or JSONL files, and creates them in Scorecard with a re-runnable script. Use when the user asks for a test set, test cases, a dataset, golden set, or eval data in Scorecard.
+description: Convert a CSV, TSV, JSON, JSONL, or spreadsheet file into Scorecard test cases, or write new ones. Scorecard needs a specific row shape and field mapping, so use this skill instead of converting the file by hand. Also covers designing 10 to 30 test cases from the agent's real inputs (happy paths, edge cases, risky cases) and uploading them with a re-runnable script. Use when the user mentions Scorecard test sets, test cases, datasets, golden sets, or eval data, or asks to turn a data file into Scorecard test cases.
 ---
 
 # Build a Scorecard test set
 
-Files named `references/<file>.md` below are in this skill's own folder (the base directory shown when the skill loads), not in the user's repo. Read them from there.
+Files named `references/<file>.md` below sit next to this `SKILL.md`, in the skill's own folder, not in the user's repo. Read them from there.
 
 A test set is a list of test cases. Each test case has **inputs** (what the agent gets), **expected** values (what a good answer contains), and optional **metadata** (for grouping, never shown to the agent).
 

@@ -5,13 +5,13 @@
     "url": "https://scorecard.io"
   },
   "metadata": {
-    "description": "Official Scorecard skills for coding agents. Connect an AI agent to Scorecard: add tracing, write metrics, build test sets, and run evals.",
+    "description": "Scorecard skills for coding agents. Connect an AI agent to Scorecard: add tracing, write metrics, build test sets, and run evals.",
     "version": "0.1.0"
   },
   "plugins": [
     {
       "name": "scorecard",
-      "source": "./plugins/scorecard",
+      "source": "./",
       "description": "Onboard an AI agent to Scorecard from your coding agent. Detects how the agent is built, adds tracing, writes metrics and test sets, and runs a first evaluation.",
       "version": "0.1.0",
       "author": {
