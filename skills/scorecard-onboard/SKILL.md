@@ -1,6 +1,6 @@
 ---
 name: scorecard-onboard
-description: Onboard an AI agent or LLM app to Scorecard end to end. Use when the user asks to "set up Scorecard", "onboard my agent to Scorecard", "evaluate my agent with Scorecard", or "add Scorecard" without naming a single step. Runs setup, agent brief, tracing, metrics, test set, and a first evaluation in order.
+description: Onboard an AI agent or LLM app to Scorecard end to end, for requests like "set up Scorecard", "onboard my agent to Scorecard", "evaluate my agent with Scorecard", or "add Scorecard". Runs setup, agent brief, tracing, metrics, test set, and a first evaluation in order, using the other Scorecard skills. Use when the user asks to set up, onboard, or add Scorecard without naming a single step.
 ---
 
 # Onboard an agent to Scorecard

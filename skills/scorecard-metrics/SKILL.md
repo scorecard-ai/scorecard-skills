@@ -1,9 +1,11 @@
 ---
 name: scorecard-metrics
-description: Design and create Scorecard metrics for an AI agent. Turns the agent brief into 3 to 5 metrics (AI-judged, human, or heuristic; boolean, 1-5, or 0-1), writes them as a re-runnable script in scorecard/, and creates them in the Scorecard project. Use when the user asks for metrics, evaluators, graders, LLM-as-judge, or scoring criteria in Scorecard.
+description: Create Scorecard metrics (evaluators, graders, LLM-as-judge) for an AI agent. Turns the agent brief into 3 to 5 metrics (AI-judged, human, or heuristic; boolean, 1-5, or 0-1), writes them as a re-runnable script in scorecard/, and creates them in the Scorecard project. This skill has the exact Scorecard metric fields and prompt variables, so load it before you create metrics instead of guessing the API. Use when the user asks for metrics, evaluators, graders, LLM-as-judge, or scoring criteria in Scorecard.
 ---
 
 # Create Scorecard metrics
+
+Follow this skill and its reference files. Do not guess Scorecard metric fields from memory.
 
 Files named `references/<file>.md` below sit next to this `SKILL.md`, in the skill's own folder, not in the user's repo. Read them from there.
 

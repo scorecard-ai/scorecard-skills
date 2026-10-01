@@ -1,9 +1,11 @@
 ---
 name: scorecard-setup
-description: Connect a repo to Scorecard. Gets and checks the Scorecard API key, picks or creates a Scorecard project, and writes SCORECARD_API_KEY and SCORECARD_PROJECT_ID to the env file. Also connects the Scorecard MCP server. Use when the user asks to log in, connect, or pick a Scorecard project, and before any other Scorecard step.
+description: Connect a repo to Scorecard. Gets and checks the Scorecard API key, picks or creates a Scorecard project, and writes SCORECARD_API_KEY and SCORECARD_PROJECT_ID to the env file. Also connects the Scorecard MCP server. This skill has the exact Scorecard API endpoints and env var names, so load it instead of guessing them. Use when the user asks to log in, connect, or pick a Scorecard project, and before any other Scorecard step.
 ---
 
 # Connect to Scorecard
+
+Follow this skill. Do not guess Scorecard endpoints or env var names from memory.
 
 Files named `references/<file>.md` below sit next to this `SKILL.md`, in the skill's own folder, not in the user's repo. Read them from there.
 

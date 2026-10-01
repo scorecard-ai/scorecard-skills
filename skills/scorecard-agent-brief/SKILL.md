@@ -1,6 +1,6 @@
 ---
 name: scorecard-agent-brief
-description: Read an AI agent's code and write a short brief (what it does, inputs, outputs, tools, users, what "good" and "bad" look like) to scorecard/agent-brief.md. The Scorecard metrics, test set, and eval skills read this brief. Use when the user asks what their agent should be evaluated on, and before writing metrics or test sets.
+description: Write the Scorecard agent brief. Reads an AI agent's code and writes a short brief (what it does, inputs, outputs, tools, users, what "good" and "bad" look like) to scorecard/agent-brief.md. The Scorecard metrics, test set, and eval skills read this brief, so it must use this skill's exact section headings. Use when the user asks for a Scorecard agent brief, asks what their agent should be evaluated on, and before writing metrics or test sets.
 ---
 
 # Write the agent brief
