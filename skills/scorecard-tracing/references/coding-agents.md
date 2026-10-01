@@ -46,7 +46,7 @@ Merge the key into an existing `opencode.json`. OpenCode also sends many interna
 Pi has no built-in exporter. Install the extension in this skill's `assets/pi-scorecard-tracing.ts`:
 
 1. Copy it to `~/.pi/agent/extensions/scorecard-tracing.ts` for all projects, or `.pi/extensions/scorecard-tracing.ts` for this repo. Pi loads project extensions only after the project is trusted (or with `--approve`).
-2. Install its packages next to it (for a project extension, at the repo root): `npm install @opentelemetry/api @opentelemetry/sdk-trace-base @opentelemetry/exporter-trace-otlp-proto @opentelemetry/resources`.
+2. Install its packages next to it (for a project extension, at the repo root): `npm install @opentelemetry/api@^1 @opentelemetry/sdk-trace-base@^2 @opentelemetry/exporter-trace-otlp-proto@latest @opentelemetry/resources@^2`. The extension needs OpenTelemetry JS SDK 2.x. If you write `package.json` by hand, use `^2` for `sdk-trace-base` and `resources`; 1.x fails with `resourceFromAttributes is not a function`.
 3. It reads `SCORECARD_API_KEY`, `SCORECARD_PROJECT_ID`, and optionally `OTEL_EXPORTER_OTLP_TRACES_ENDPOINT` from the environment.
 
 It sends one `invoke_agent pi` span per prompt, with `chat` and `execute_tool` spans under it.

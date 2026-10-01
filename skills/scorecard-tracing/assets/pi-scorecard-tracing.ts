@@ -5,7 +5,8 @@
 // Install: copy to ~/.pi/agent/extensions/scorecard-tracing.ts (all projects) or
 // .pi/extensions/scorecard-tracing.ts (one project; Pi loads project extensions only after you trust
 // the project or pass --approve). Then install the OpenTelemetry packages next to it:
-//   npm install @opentelemetry/api @opentelemetry/sdk-trace-base @opentelemetry/exporter-trace-otlp-proto @opentelemetry/resources
+//   npm install @opentelemetry/api@^1 @opentelemetry/sdk-trace-base@^2 @opentelemetry/exporter-trace-otlp-proto@latest @opentelemetry/resources@^2
+//   (OpenTelemetry JS SDK 2.x: 1.x has no resourceFromAttributes or spanProcessors option.)
 //
 // Env: SCORECARD_API_KEY, SCORECARD_PROJECT_ID, optional OTEL_EXPORTER_OTLP_TRACES_ENDPOINT.
 
