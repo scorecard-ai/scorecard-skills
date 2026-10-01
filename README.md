@@ -72,10 +72,6 @@ For evaluation, the skills cover SDK runs (`runAndEvaluate` / `run_and_evaluate`
 - App: [app.scorecard.io](https://app.scorecard.io)
 - SDKs: [Python](https://github.com/scorecard-ai/scorecard-python), [TypeScript](https://github.com/scorecard-ai/scorecard-node), [Go](https://github.com/scorecard-ai/scorecard-go)
 
-## Feedback
-
-Found a bug or a stack the skills do not handle? Open an issue in this repo.
-
 ## License
 
 [Apache 2.0](LICENSE)
