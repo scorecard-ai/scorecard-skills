@@ -5,7 +5,7 @@ description: Run a Scorecard evaluation of an AI agent. Writes a script that run
 
 # Run a Scorecard evaluation
 
-Files named `references/<file>.md` below are in this skill's own folder (the base directory shown when the skill loads), not in the user's repo. Read them from there.
+Files named `references/<file>.md` below sit next to this `SKILL.md`, in the skill's own folder, not in the user's repo. Read them from there.
 
 A run takes each test case, calls the agent with its inputs, saves the output as a record, and scores the record with the chosen metrics. Scorecard scores AI metrics on its side after the records arrive.
 

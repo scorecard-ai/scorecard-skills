@@ -19,7 +19,7 @@ Watch the output for exporter errors:
 | Error | Cause | Fix |
 |---|---|---|
 | `401` / `Unauthorized` | Wrong or missing API key | Check `SCORECARD_API_KEY` is loaded in this process |
-| `404` | Wrong path | Traceloop and Claude use the base URL `.../otel`; exporters and wrappers use `.../otel/v1/traces` |
+| `404` | Wrong path | Traceloop and Claude Code use the base URL `.../otel`; exporters and wrappers use `.../otel/v1/traces` |
 | `ECONNREFUSED`, timeout | Network or proxy blocks `tracing.scorecard.io` | Allow outbound HTTPS to it |
 | No error and no spans | Init ran too late, or the process exited before flush | Move init earlier; flush on exit |
 

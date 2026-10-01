@@ -82,10 +82,8 @@ tracer = trace.get_tracer("my-agent")
 
 def handle(question: str) -> str:
     with tracer.start_as_current_span("agent.run") as span:
-        span.set_attribute("input.value", question)
-        answer = run_agent(question)  # wrapped client calls happen in here
-        span.set_attribute("output.value", answer)
-        return answer
+        span.set_attribute("input.value", question)  # the answer comes from the wrapped LLM spans
+        return run_agent(question)  # wrapped client calls happen in here
 ```
 
 ```typescript
@@ -96,10 +94,8 @@ const tracer = trace.getTracer("my-agent");
 async function handle(question: string): Promise<string> {
   return tracer.startActiveSpan("agent.run", async (span) => {
     try {
-      span.setAttribute("input.value", question);
-      const answer = await runAgent(question); // wrapped client calls happen in here
-      span.setAttribute("output.value", answer);
-      return answer;
+      span.setAttribute("input.value", question); // the answer comes from the wrapped LLM spans
+      return await runAgent(question); // wrapped client calls happen in here
     } finally {
       span.end();
     }
@@ -117,6 +113,15 @@ Spans export right away (batch size 1), but a script that exits at once can stil
 from opentelemetry import trace
 
 trace.get_tracer_provider().force_flush()
+```
+
+In TypeScript, `trace.getTracerProvider()` returns a proxy with no `forceFlush`, so calling it crashes. Flush the real provider behind it:
+
+```typescript
+import { trace } from "@opentelemetry/api";
+
+const provider = trace.getTracerProvider() as unknown as { getDelegate?: () => { forceFlush?: () => Promise<void> } };
+await provider.getDelegate?.().forceFlush?.();
 ```
 
 Long-running servers do not need this.

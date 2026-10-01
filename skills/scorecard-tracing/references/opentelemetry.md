@@ -33,7 +33,7 @@ Spans need these attributes for Scorecard to show inputs, outputs, model, and to
 | `gen_ai.completion.<i>.role`, `gen_ai.completion.<i>.content` | `assistant`, `4` |
 | `gen_ai.usage.input_tokens`, `gen_ai.usage.output_tokens` | `12`, `3` |
 
-For non-LLM steps (the agent run, a tool call), set `input.value` and `output.value`. Set `openinference.span.kind` to `AGENT`, `CHAIN`, `TOOL`, or `LLM`.
+For the agent run, set `input.value` (the user's request) on its root span, but not `output.value`: Scorecard builds the conversation span by span in start order, so an answer on the root span shows up before the model call that produced it. The final answer belongs on the last LLM span's `gen_ai.completion.*`. For tool calls, set `tool.name`, `tool.parameters`, and `tool.result`. Set `openinference.span.kind` to `AGENT`, `TOOL`, or `LLM`.
 
 ## Python
 
