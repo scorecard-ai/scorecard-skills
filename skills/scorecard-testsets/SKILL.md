@@ -1,6 +1,6 @@
 ---
 name: scorecard-testsets
-description: Build or import a Scorecard test set. Use for any Scorecard test set or test case task, including turning a CSV, TSV, JSON, JSONL, or spreadsheet file into Scorecard test cases, writing 10 to 30 test cases from the agent's real inputs (happy paths, edge cases, risky cases), and uploading them with a re-runnable script. Use when the user mentions test sets, test cases, datasets, golden sets, or eval data for Scorecard.
+description: Convert a CSV, TSV, JSON, JSONL, or spreadsheet file into Scorecard test cases, or write new ones. Scorecard needs a specific row shape and field mapping, so use this skill instead of converting the file by hand. Also covers designing 10 to 30 test cases from the agent's real inputs (happy paths, edge cases, risky cases) and uploading them with a re-runnable script. Use when the user mentions Scorecard test sets, test cases, datasets, golden sets, or eval data, or asks to turn a data file into Scorecard test cases.
 ---
 
 # Build a Scorecard test set
