@@ -5,7 +5,7 @@ description: Connect a repo to Scorecard. Gets and checks the Scorecard API key,
 
 # Connect to Scorecard
 
-Files named `references/<file>.md` below are in this skill's own folder (the base directory shown when the skill loads), not in the user's repo. Read them from there.
+Files named `references/<file>.md` below sit next to this `SKILL.md`, in the skill's own folder, not in the user's repo. Read them from there.
 
 ## 1. API key
 
@@ -68,7 +68,7 @@ Use the repo's package manager (`uv add`, `poetry add`, `pnpm add`, `yarn add`, 
 
 ## 6. MCP server (optional)
 
-The Scorecard MCP server lets a coding agent read and change Scorecard data directly. This plugin already bundles it as `scorecard`. See `references/mcp.md` to connect it by hand or in other editors.
+The Scorecard MCP server lets a coding agent read and change Scorecard data directly. The Claude Code plugin bundles it; other agents add it in one command. See `references/mcp.md` to connect it by hand or in other editors.
 
 ## Done when
 

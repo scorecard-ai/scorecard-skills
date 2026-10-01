@@ -2,7 +2,9 @@
 
 Read the manifest files first: `package.json`, `pyproject.toml`, `requirements*.txt`, `uv.lock`, `poetry.lock`, `go.mod`, `pom.xml`, `build.gradle*`, `*.csproj`, `Cargo.toml`. Then grep the source for imports.
 
-Go down the table. Take the **first** row that matches. Frameworks come before raw provider clients, because a framework calls the client for you.
+If the user wants to trace the coding agent they work in (Claude Code, Codex, Gemini CLI, OpenCode, Pi, Goose, Hermes, Cursor), not an app in the repo, use `coding-agents.md` and skip this table.
+
+Otherwise go down the table. Take the **first** row that matches. Frameworks come before raw provider clients, because a framework calls the client for you.
 
 | # | You find | Method | Reference |
 |---|---|---|---|
@@ -14,8 +16,9 @@ Go down the table. Take the **first** row that matches. Frameworks come before r
 | 6 | Already has `traceloop-sdk` or `@traceloop/node-server-sdk` | Traceloop, point it at Scorecard | `traceloop.md` |
 | 7 | Already has an OTel `TracerProvider` (`opentelemetry-sdk`, `@opentelemetry/sdk-trace-*`) | Add a Scorecard exporter | `opentelemetry.md` |
 | 8 | `openai` or `anthropic` (Python), `openai` or `@anthropic-ai/sdk` (TS), called directly | `wrap()` | `sdk-wrap.md` |
-| 9 | Go, Java, .NET, Rust, Ruby, or raw HTTP calls to an LLM | OpenTelemetry | `opentelemetry.md` |
-| 10 | The user wants no new dependency, and the app uses an OpenAI-compatible client | LLM proxy | `llm-proxy.md` |
+| 9 | A hand-written loop that calls a model and runs tools (an agent or harness you built), in any language | Agent loop spans | `agent-loop.md` |
+| 10 | Go, Java, .NET, Rust, Ruby, or single raw HTTP calls to an LLM | OpenTelemetry | `opentelemetry.md` |
+| 11 | The user wants no new dependency, and the app uses an OpenAI-compatible client | LLM proxy | `llm-proxy.md` |
 
 ## Tie-breaks
 

@@ -1,11 +1,11 @@
 ---
 name: scorecard-tracing
-description: Add Scorecard tracing to an AI agent or LLM app so every run shows up in Scorecard. Detects the stack (Claude Agent SDK, Claude Code, OpenAI, Anthropic, Vercel AI SDK, LangChain, LangGraph, LlamaIndex, CrewAI, LiteLLM, OpenAI Agents SDK, raw OpenTelemetry, any language) and picks the right method. Use when the user asks to trace, instrument, monitor, or log an agent to Scorecard.
+description: Add Scorecard tracing to any AI agent, LLM app, or coding-agent harness so every model call and tool call shows up in Scorecard. Detects the stack (OpenAI, Anthropic, Vercel AI SDK, LangChain, LangGraph, LlamaIndex, CrewAI, LiteLLM, OpenAI Agents SDK, Claude Agent SDK, coding agents such as Claude Code, Codex, Gemini CLI, OpenCode, Pi, and Hermes, hand-written agent loops, any language) and picks the right method. Use when the user asks to trace, instrument, monitor, or log an agent to Scorecard.
 ---
 
 # Add Scorecard tracing
 
-Files named `references/<file>.md` below are in this skill's own folder (the base directory shown when the skill loads), not in the user's repo. Read them from there.
+Files named `references/<file>.md` below sit next to this `SKILL.md`, in the skill's own folder, not in the user's repo. Read them from there.
 
 Scorecard takes OpenTelemetry (OTel) traces. Each agent run becomes a record on the project's Records page.
 
@@ -25,13 +25,15 @@ Needs `SCORECARD_API_KEY` and `SCORECARD_PROJECT_ID`. If either is missing, run 
 
 | Method | Reference | Code change |
 |---|---|---|
-| Claude Agent SDK, Claude Code CLI | `references/claude-agent-sdk.md` | Env vars only |
+| The coding agent itself: Claude Code, Codex, Gemini CLI, OpenCode, Pi, Goose, Hermes, Cursor | `references/coding-agents.md` | Env vars, a config file, or an extension |
+| Claude Agent SDK (an app built on it) | `references/claude-agent-sdk.md` | Env vars only |
 | Claude Tag (Claude in Slack) | `references/claude-tag.md` | Admin settings only |
 | OpenAI or Anthropic client, `wrap()` | `references/sdk-wrap.md` | Wrap the client |
 | Vercel AI SDK, `wrapAISDK()` | `references/vercel-ai-sdk.md` | Wrap the `ai` module |
 | LangChain, LangGraph, LlamaIndex, CrewAI, LiteLLM, OpenAI Agents SDK, Bedrock, Gemini (Traceloop / OpenLLMetry) | `references/traceloop.md` | One init call |
 | Scorecard LLM proxy | `references/llm-proxy.md` | Change the base URL |
 | OpenTelemetry directly (any language, custom spans) | `references/opentelemetry.md` | Exporter setup |
+| Hand-written agent loop or custom harness (model calls plus tool calls, any language) | `references/agent-loop.md` | One span per turn, model call, and tool call |
 
 ## Endpoints
 

@@ -50,6 +50,10 @@ export const aiSDK = wrapAISDK(ai, {
 
 `projectId` is required when `metrics` is set. Metric setup errors only log to the console. Check the project's Metrics page after the first call.
 
+## Flush before exit
+
+Spans export right away (batch size 1). If a short script still loses its last span, flush the provider behind the global proxy; `trace.getTracerProvider().forceFlush()` does not exist and crashes. See "Flush before exit" in `sdk-wrap.md`.
+
 ## Gotchas
 
 - `wrapAISDK` registers its own global OTel tracer provider. If the app already registers one (for example `@vercel/otel` in `instrumentation.ts`), use `references/opentelemetry.md` and add a Scorecard exporter to the existing provider instead.
