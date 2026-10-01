@@ -1,0 +1,19 @@
+name: Trigger tests
+
+# Starts the test suite in the private scorecard-skills-tests repo for every push to main.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send skills-updated to scorecard-skills-tests
+        env:
+          GH_TOKEN: ${{ secrets.TESTS_DISPATCH_TOKEN }}
+        run: |
+          gh api repos/scorecard-ai/scorecard-skills-tests/dispatches \
+            -f event_type=skills-updated \
+            -f "client_payload[sha]=$GITHUB_SHA"
