@@ -1,9 +1,11 @@
 ---
 name: scorecard-tracing
-description: Add Scorecard tracing to any AI agent, LLM app, or coding-agent harness so every model call and tool call shows up in Scorecard. Detects the stack (OpenAI, Anthropic, Vercel AI SDK, LangChain, LangGraph, LlamaIndex, CrewAI, LiteLLM, OpenAI Agents SDK, Claude Agent SDK, coding agents such as Claude Code, Codex, Gemini CLI, OpenCode, Pi, and Hermes, hand-written agent loops, any language) and picks the right method. Use when the user asks to trace, instrument, monitor, or log an agent to Scorecard.
+description: Add Scorecard tracing to an AI agent or LLM app, for requests like "add Scorecard tracing" or "trace, instrument, monitor, or log this agent in Scorecard". Scorecard tracing uses specific packages, wrapper functions, and endpoints that are easy to guess wrong (for example, the Vercel AI SDK uses wrapAISDK from the scorecard-ai npm package, not a separate instrumentation package). This skill has the exact setup per stack, so load it before you install packages or write tracing code. Covers OpenAI, Anthropic, Vercel AI SDK, LangChain, LangGraph, LlamaIndex, CrewAI, LiteLLM, OpenAI Agents SDK, Claude Agent SDK, coding agents (Claude Code, Codex, Gemini CLI, OpenCode, Pi, Goose, Hermes, Cursor), hand-written agent loops, and plain OpenTelemetry in any language. Use when the user asks to trace, instrument, monitor, or log an agent to Scorecard.
 ---
 
 # Add Scorecard tracing
+
+Follow this skill and its reference files. Do not guess Scorecard package names, functions, or endpoints from memory. Guessed names install packages that do not exist and send no traces.
 
 Files named `references/<file>.md` below sit next to this `SKILL.md`, in the skill's own folder, not in the user's repo. Read them from there.
 

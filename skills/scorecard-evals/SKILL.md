@@ -1,9 +1,11 @@
 ---
 name: scorecard-evals
-description: Run a Scorecard evaluation of an AI agent. Writes a script that runs the agent on a Scorecard test set, scores it with Scorecard metrics, and prints the run URL. Also covers linking traces to eval records, multi-turn simulations, CI with GitHub Actions, pushing scores from your own checks, system versions, and no-code runs. Use when the user asks to run evals, benchmark, regression-test, or compare versions of an agent in Scorecard.
+description: Run a Scorecard evaluation of an AI agent. Runs it on a Scorecard test set, scores it with Scorecard metrics, and prints the run URL. This skill has the exact Scorecard SDK calls and record shapes, so load it before you write an eval script instead of guessing the API. Also covers linking traces to eval records, multi-turn simulations, CI with GitHub Actions, pushing scores from your own checks, system versions, and no-code runs. Use when the user asks to run evals, benchmark, regression-test, or compare versions of an agent in Scorecard.
 ---
 
 # Run a Scorecard evaluation
+
+Follow this skill and its reference files. Do not guess Scorecard SDK calls from memory.
 
 Files named `references/<file>.md` below sit next to this `SKILL.md`, in the skill's own folder, not in the user's repo. Read them from there.
 

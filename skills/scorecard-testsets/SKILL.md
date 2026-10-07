@@ -1,9 +1,11 @@
 ---
 name: scorecard-testsets
-description: Convert a CSV, TSV, JSON, JSONL, or spreadsheet file into Scorecard test cases, or write new ones. Scorecard needs a specific row shape and field mapping, so use this skill instead of converting the file by hand. Also covers designing 10 to 30 test cases from the agent's real inputs (happy paths, edge cases, risky cases) and uploading them with a re-runnable script. Use when the user mentions Scorecard test sets, test cases, datasets, golden sets, or eval data, or asks to turn a data file into Scorecard test cases.
+description: Turn a CSV, TSV, JSON, JSONL, or spreadsheet file into Scorecard test cases (scorecard/testcases.jsonl), or write new test cases for an agent. Scorecard test cases are flat rows keyed by the test set's schema field names, plus a field mapping. Generic shapes such as {"input", "expected_output"} or an inputs/expected wrapper are wrong. Load this skill before you read the data file or write any test case file. It has the exact row shape, schema, and upload script. Also covers designing 10 to 30 test cases from the agent's real inputs (happy paths, edge cases, risky cases). Use when the user mentions Scorecard test sets, test cases, datasets, golden sets, or eval data, or asks to turn a data file into Scorecard test cases.
 ---
 
 # Build a Scorecard test set
+
+Follow this skill and its reference files. Do not invent a row shape for Scorecard test cases. Rows in any other shape do not match the test set schema.
 
 Files named `references/<file>.md` below sit next to this `SKILL.md`, in the skill's own folder, not in the user's repo. Read them from there.
 
