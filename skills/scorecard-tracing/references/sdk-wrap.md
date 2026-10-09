@@ -73,15 +73,18 @@ If a TS app uses OpenAI `responses.create`, use Traceloop or OpenTelemetry inste
 
 ## Group calls into one trace
 
-A multi-step agent makes several LLM calls per request. Open a parent span around the request, and the wrapped calls nest under it:
+A multi-step agent makes several LLM calls per request. Open a parent span around the request, and the wrapped calls nest under it. `wrap` sets `scorecard.project_id` only on the spans it creates, so set it on your parent span too; otherwise that span, and anything on it such as `session.id`, lands in the org's oldest project:
 
 ```python
+import os
+
 from opentelemetry import trace
 
 tracer = trace.get_tracer("my-agent")
 
 def handle(question: str) -> str:
     with tracer.start_as_current_span("agent.run") as span:
+        span.set_attribute("scorecard.project_id", os.environ["SCORECARD_PROJECT_ID"])
         span.set_attribute("input.value", question)  # the answer comes from the wrapped LLM spans
         return run_agent(question)  # wrapped client calls happen in here
 ```
@@ -94,6 +97,7 @@ const tracer = trace.getTracer("my-agent");
 async function handle(question: string): Promise<string> {
   return tracer.startActiveSpan("agent.run", async (span) => {
     try {
+      span.setAttribute("scorecard.project_id", process.env.SCORECARD_PROJECT_ID ?? "");
       span.setAttribute("input.value", question); // the answer comes from the wrapped LLM spans
       return await runAgent(question); // wrapped client calls happen in here
     } finally {
