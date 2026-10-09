@@ -10,7 +10,7 @@ Scorecard reads the first of these it finds:
 2. Resource attribute `scorecard.session_id`
 3. Span attribute `scorecard.session_id`
 
-Set it on the root span of each turn. Use the app's existing conversation or thread ID.
+Set it on the root span of each turn. Use the app's existing conversation or thread ID. If you create that root span yourself next to `wrap`, also set `scorecard.project_id` on it (see "Group calls into one trace" in `sdk-wrap.md`), or it is not saved to the project.
 
 ```python
 with tracer.start_as_current_span("agent.turn") as span:
